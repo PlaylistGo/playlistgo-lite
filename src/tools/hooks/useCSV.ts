@@ -11,10 +11,10 @@ export function useCSV() {
         const [, ...lines] = text.trim().split("\n");
 
         setSongs(
-          lines.map((line) => {
+          lines.map((line, index) => {
             const [title, url] = line.split(",");
             return {
-              id: crypto.randomUUID(),
+              id: index,
               title: title || "Untitled",
               url: url || "",
             };
