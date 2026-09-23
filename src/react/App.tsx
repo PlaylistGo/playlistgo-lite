@@ -2,15 +2,7 @@ import { useState } from "react";
 import "../css/react/App.css";
 import { useCSV } from "../tools/hooks/useCSV";
 import { type Song } from "../tools/types/interface";
-
-function toEmbedYTUrl(url: string) {
-  const u = new URL(url);
-  const id = u.hostname.includes("youtu.be")
-    ? u.pathname.slice(1)
-    : u.searchParams.get("v");
-
-  return id ? `https://www.youtube.com/embed/${id}` : url;
-}
+import { useURL } from "../tools/hooks/useURL";
 
 function App() {
   const songs = useCSV();
@@ -24,7 +16,7 @@ function App() {
             {song.title} (Song ID: {song.id})
           </div>
           {activeSong?.id === song.id && (
-            <iframe src={toEmbedYTUrl(song.url)} title={song.title}></iframe>
+            <iframe src={useURL(song.url)} title={song.title}></iframe>
           )}
         </li>
       ))}
