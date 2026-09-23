@@ -1,7 +1,7 @@
 // song interface
 
 export interface Song {
-    id: number
+    id: string
     title: string
     url: string
 }
